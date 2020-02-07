@@ -14,13 +14,21 @@ public class BinTree {
         //创建树
         BinaryTree binaryTree = new BinaryTree();
         //节点数据
-        List<Node> datas = new ArrayList();
+        List<Node> datas = new ArrayList<>();
 
-        int arr [] = new int []{0,1,2,3,4,5,6,7};
-        for (int i : arr) {
-            datas.add(new Node(arr[i]));
+        Integer arr [] = new Integer []{3,9,20,null,null,15,7};
+        for (Integer i : arr) {
+            if(i != null){
+                datas.add(new Node(i));
+            }else{
+                datas.add(null);
+            }
+            
         }
-        for (int parIndex = 0; parIndex < datas.size() / 2; parIndex ++) {
+        for (Integer parIndex = 0; parIndex < datas.size() / 2; parIndex ++) {
+            if(datas.get(parIndex) == null){
+                continue;
+            }
             //左孩子
             datas.get(parIndex).setLNode(datas.get(2 * parIndex + 1));
             //右孩子
@@ -32,11 +40,11 @@ public class BinTree {
         //将节点挂到树上
         binaryTree.setRoot(datas.get(0));
         //遍历
-        System.out.println("\n前序遍历：");
+        System.out.print("\n前序遍历：");
         binaryTree.preOrder();
-        System.out.println("\n中序遍历：");
+        System.out.print("\n中序遍历：");
         binaryTree.inOrder();
-        System.out.println("\n后序遍历：");
+        System.out.print("\n后序遍历：");
         binaryTree.postOrder();
     }
     
@@ -69,29 +77,29 @@ class BinaryTree{
 }
 //节点
 class Node{
-    private int value;
+    private Integer value;
     private Node lNode;
     private Node rNode;
 
     //构造
-    public Node(final int value) {
+    public Node(Integer value) {
         this.value = value;
     }
     //get set ...
-    public int getValue(){
-        return ths.value;
+    public Integer getValue(){
+        return this.value;
     }
-    public void setValue(int value){
+    public void setValue(Integer value){
         this.value = value;
     }
     public Node getLNode(){
-        return ths.lNode;
+        return this.lNode;
     }
     public void setLNode(Node lNode){
         this.lNode = lNode;
     }
-    public int getRNode(){
-        return ths.rNode;
+    public Node getRNode(){
+        return this.rNode;
     }
     public void setRNode(Node rNode){
         this.rNode = rNode;
@@ -105,7 +113,7 @@ class Node{
     //前序遍历
     public void  preOrder(){
         //根
-        System.out.print(this+"\t");
+        System.out.print(this.value+"\t");
         //左
         if(this.lNode != null){
             this.lNode.preOrder();
@@ -122,7 +130,7 @@ class Node{
             this.lNode.inOrder();
         }
         //根
-        System.out.print(this+"\t");
+        System.out.print(this.value+"\t");
         //右
         if(this.rNode != null){
             this.rNode.inOrder();
@@ -139,6 +147,6 @@ class Node{
             this.rNode.postOrder();
         }
         //根
-        System.out.print(this+"\t");
+        System.out.print(this.value+"\t");
     }
 }
