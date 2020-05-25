@@ -171,6 +171,29 @@ public class BinTreeTraversal{
     }
 
     /**
+     * 非递归实现后序遍历 法三
+     */
+    public List<Integer> postOrder3(TreeNode root){
+        List<Integer> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            if(node.left != null){
+                stack.push(node.left);
+            }
+            if(node.right != null){
+                stack.push(node.right);
+            }
+            list.add(0,node.val);
+        }
+        return list;
+    }
+
+    /**
      * 非递归层次遍历
      */
     public List<List<Integer>> levelOrder1(TreeNode root){  
